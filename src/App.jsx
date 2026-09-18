@@ -13,7 +13,6 @@ import VoiceOnboardingPage from './pages/VoiceOnboardingPage';
 import DashboardPage from './pages/DashboardPage';
 import LiveMeetingPage from './pages/LiveMeetingPage';
 import ExistingMeetingPage from './pages/ExistingMeetingPage';
-import ManualConversationPage from './pages/ManualConversationPage';
 import ReportPage from './pages/ReportPage';
 import ActionTrackerPage from './pages/ActionTrackerPage';
 import MeetingHistoryPage from './pages/MeetingHistoryPage';
@@ -52,7 +51,10 @@ function AppContent({ currentView, setCurrentView }) {
         const code = queryPart.replace('join=', '');
         setJoinCodeFromUrl(code);
         setJoinModalOpen(true);
-      } else if (rawHash && ['landing', 'auth', 'voice-onboarding', 'dashboard', 'live', 'upload', 'manual', 'report', 'actions', 'history', 'settings'].includes(rawHash)) {
+      } else if (rawHash === 'manual') {
+        setCurrentView('dashboard');
+        window.location.hash = 'dashboard';
+      } else if (rawHash && ['landing', 'auth', 'voice-onboarding', 'dashboard', 'live', 'upload', 'report', 'actions', 'history', 'settings'].includes(rawHash)) {
         setCurrentView(rawHash);
       } else if (!rawHash) {
         setCurrentView('auth');
@@ -125,10 +127,6 @@ function AppContent({ currentView, setCurrentView }) {
           <ExistingMeetingPage onNavigate={handleNavigate} />
         )}
 
-        {currentView === 'manual' && (
-          <ManualConversationPage onNavigate={handleNavigate} />
-        )}
-
         {currentView === 'report' && (
           <ReportPage
             onNavigate={handleNavigate}
@@ -195,7 +193,10 @@ export function App() {
   const [currentView, setCurrentView] = useState(() => {
     // Front page is Login Page by default!
     const rawHash = window.location.hash.replace('#', '');
-    if (rawHash && ['auth', 'dashboard', 'live', 'upload', 'manual', 'report', 'actions', 'history', 'settings', 'voice-onboarding', 'landing'].includes(rawHash)) {
+    if (rawHash === 'manual') {
+      return 'dashboard';
+    }
+    if (rawHash && ['auth', 'dashboard', 'live', 'upload', 'report', 'actions', 'history', 'settings', 'voice-onboarding', 'landing'].includes(rawHash)) {
       return rawHash;
     }
     return 'auth';

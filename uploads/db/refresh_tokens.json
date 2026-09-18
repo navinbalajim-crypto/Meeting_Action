@@ -1,0 +1,74 @@
+[
+  {
+    "id": "rtk_1789759381774_57vkw3",
+    "userId": "usr_1789759381736_v5i3kx",
+    "tokenHash": "0dc279ade3d07d0cbe9b2a0dccc6596a8b4c3fd0d2340d3dd4ce25b4802231c6",
+    "expiresAt": "2026-09-25T19:23:01.773Z",
+    "revokedAt": "2026-09-18T19:23:02.280Z",
+    "createdAt": "2026-09-18T19:23:01.783Z"
+  },
+  {
+    "id": "rtk_1789759382237_egu21j",
+    "userId": "usr_1789759381736_v5i3kx",
+    "tokenHash": "4f48281de2c56fb2ce9674ea2202f8a5e1920fffa35a403759d2beaeb55e54d0",
+    "expiresAt": "2026-09-25T19:23:02.237Z",
+    "revokedAt": null,
+    "createdAt": "2026-09-18T19:23:02.238Z"
+  },
+  {
+    "id": "rtk_1789759382286_w6m1pg",
+    "userId": "usr_1789759381736_v5i3kx",
+    "tokenHash": "81ec73aa1f3991902576e536944de4154d501668b08be23fca19d3c6ce6cc303",
+    "expiresAt": "2026-09-25T19:23:02.286Z",
+    "revokedAt": null,
+    "createdAt": "2026-09-18T19:23:02.286Z"
+  },
+  {
+    "id": "rtk_1789759382478_yqd3jl",
+    "userId": "usr_1789759382473_bevok5",
+    "tokenHash": "0eeb9992d26320f8c9182192c1a63162f521787be0928df057c9539eb2c95989",
+    "expiresAt": "2026-09-25T19:23:02.478Z",
+    "revokedAt": null,
+    "createdAt": "2026-09-18T19:23:02.478Z"
+  },
+  {
+    "id": "rtk_1789759503503_3er4ka",
+    "userId": "usr_1789759503475_3n92q1",
+    "tokenHash": "09f6e7ccdc42e7b44496872e43a9710c91e99dfcdf027e6c4d253ba7861b3b9c",
+    "expiresAt": "2026-09-25T19:25:03.502Z",
+    "revokedAt": "2026-09-18T19:25:04.308Z",
+    "createdAt": "2026-09-18T19:25:03.504Z"
+  },
+  {
+    "id": "rtk_1789759504267_w5a1t1",
+    "userId": "usr_1789759503475_3n92q1",
+    "tokenHash": "520c76880a696a39bd3ae168e0ded7b48864f82183e842458445068b46c40b35",
+    "expiresAt": "2026-09-25T19:25:04.267Z",
+    "revokedAt": null,
+    "createdAt": "2026-09-18T19:25:04.267Z"
+  },
+  {
+    "id": "rtk_1789759504318_6avxt6",
+    "userId": "usr_1789759503475_3n92q1",
+    "tokenHash": "31df01357c04db3926c404dc53d057718e2fb5f1662d0056665708a17bfc3fb1",
+    "expiresAt": "2026-09-25T19:25:04.317Z",
+    "revokedAt": "2026-09-18T19:25:04.844Z",
+    "createdAt": "2026-09-18T19:25:04.318Z"
+  },
+  {
+    "id": "rtk_1789759504644_fcrrx8",
+    "userId": "usr_1789759504638_ut51od",
+    "tokenHash": "781907e732ab44366974747c39ef4f735f24e42281e7d4ef8ce707ea0a550ac1",
+    "expiresAt": "2026-09-25T19:25:04.644Z",
+    "revokedAt": null,
+    "createdAt": "2026-09-18T19:25:04.644Z"
+  },
+  {
+    "id": "rtk_1789759891015_maicio",
+    "userId": "usr_1789759252076_o9xcja",
+    "tokenHash": "01f7bf6da3a4fdeb4ae7ef3d0b52fa58038e7347a972305a310614d669893e56",
+    "expiresAt": "2026-09-25T19:31:31.015Z",
+    "revokedAt": null,
+    "createdAt": "2026-09-18T19:31:31.015Z"
+  }
+]

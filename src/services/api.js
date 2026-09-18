@@ -40,7 +40,14 @@ class ApiClient {
       const response = await fetch(url, config);
       if (!response.ok) {
         const errorData = await response.json().catch(() => ({}));
-        throw new Error(errorData.message || `HTTP error! status: ${response.status}`);
+        const message = (errorData.error && typeof errorData.error === 'object' ? errorData.error.message : errorData.error) ||
+          errorData.message ||
+          `HTTP error! status: ${response.status}`;
+        const err = new Error(message);
+        err.status = response.status;
+        err.code = (errorData.error && typeof errorData.error === 'object' ? errorData.error.code : null) || errorData.code;
+        err.notRegistered = !!(errorData.notRegistered || err.code === 'USER_NOT_FOUND' || response.status === 404);
+        throw err;
       }
       return await response.json();
     } catch (error) {

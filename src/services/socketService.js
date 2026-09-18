@@ -13,19 +13,27 @@ class SocketService {
   }
 
   connect(meetingCode = 'G13-X7K92') {
+    const cleanCode = (meetingCode || 'G13-X7K92').trim().toUpperCase();
+    this.currentMeetingCode = cleanCode;
+
+    if (this.socket && this.socket.connected) {
+      this.socket.emit('join_meeting', { meetingCode: cleanCode });
+      return;
+    }
+
     this.setStatus('Connecting');
 
     try {
       this.socket = io(SOCKET_SERVER_URL, {
         transports: ['websocket', 'polling'],
-        timeout: 3000,
-        reconnectionAttempts: 2
+        timeout: 4000,
+        reconnectionAttempts: 5
       });
 
       this.socket.on('connect', () => {
         this.setStatus('Connected');
         this.emitToListeners('status_change', 'Connected');
-        this.socket.emit('join_meeting', { meetingCode });
+        this.socket.emit('join_meeting', { meetingCode: this.currentMeetingCode });
       });
 
       this.socket.on('disconnect', () => {
@@ -46,8 +54,32 @@ class SocketService {
       this.socket.on('commitment_detected', (data) => {
         this.emitToListeners('commitment_detected', data);
       });
+
+      this.socket.on('chat_message', (data) => {
+        this.emitToListeners('chat_message', data);
+      });
+
+      this.socket.on('chat_history', (data) => {
+        this.emitToListeners('chat_history', data);
+      });
+
+      this.socket.on('participant_joined', (data) => {
+        this.emitToListeners('participant_joined', data);
+      });
     } catch {
       this.setStatus('Ready');
+    }
+  }
+
+  requestChatHistory(meetingCode) {
+    if (this.socket && this.socket.connected) {
+      this.socket.emit('get_chat_history', { meetingCode: meetingCode || this.currentMeetingCode });
+    }
+  }
+
+  sendChatMessage(meetingCode, message) {
+    if (this.socket && this.socket.connected) {
+      this.socket.emit('chat_message', { meetingCode, message });
     }
   }
 

@@ -12,7 +12,6 @@ import {
   Settings,
   Plus,
   Compass,
-  FileText,
   ListTodo,
   History,
   Menu,
@@ -31,7 +30,6 @@ export const Navbar = ({ currentView, onNavigate, onOpenCreate, onLaunchDemo }) 
     { id: 'dashboard', label: 'Dashboard', icon: Compass },
     { id: 'live', label: 'Live Meeting', icon: Radio },
     { id: 'upload', label: 'Upload', icon: Plus },
-    { id: 'manual', label: 'Manual Dialog', icon: FileText },
     { id: 'actions', label: 'Action Tracker', icon: ListTodo },
     { id: 'history', label: 'Memory Archive', icon: History },
   ];

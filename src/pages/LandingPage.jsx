@@ -10,7 +10,6 @@ import {
   ArrowRight,
   Play,
   CheckCircle2,
-  FileText,
   Users,
   Radio,
   PlusCircle,
@@ -27,7 +26,7 @@ import {
 export const LandingPage = ({ onNavigate, onOpenCreate, onLaunchDemo }) => {
   // Hero dynamic transformation state
   const [heroStep, setHeroStep] = useState('raw'); // 'raw' -> 'processing' -> 'detected'
-  const [activeInputMode, setActiveInputMode] = useState('live'); // 'live' | 'existing' | 'manual'
+  const [activeInputMode, setActiveInputMode] = useState('live'); // 'live' | 'existing'
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -326,21 +325,21 @@ export const LandingPage = ({ onNavigate, onOpenCreate, onLaunchDemo }) => {
         </div>
       </section>
 
-      {/* SECTION 3 — THREE INPUT MODES */}
+      {/* SECTION 3 — UNIFIED INTAKE */}
       <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-white/8">
         <div className="text-center max-w-3xl mx-auto space-y-3 mb-12">
           <span className="text-xs font-mono text-primary-soft uppercase tracking-wider">
             UNIFIED INTAKE
           </span>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-white font-display">
-            Three Modes. One Intelligence Engine.
+            Two Modes. One Intelligence Engine.
           </h2>
           <p className="text-slate-400 text-sm sm:text-base">
-            Whether speaking live, uploading audio, or pasting notes, all workflows converge into the exact same verified action engine.
+            Whether speaking live or uploading audio recordings, all workflows converge into the exact same verified action engine.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
           {/* Mode 1: Live */}
           <Card
             hover
@@ -379,27 +378,6 @@ export const LandingPage = ({ onNavigate, onOpenCreate, onLaunchDemo }) => {
             </p>
             <div className="pt-2 flex items-center text-xs font-semibold text-ai gap-1">
               <span>Upload Meeting File</span>
-              <ChevronRight className="w-4 h-4" />
-            </div>
-          </Card>
-
-          {/* Mode 3: Manual */}
-          <Card
-            hover
-            className={`p-6 space-y-4 border ${
-              activeInputMode === 'manual' ? 'border-primary/50 shadow-glow-md' : 'border-white/10'
-            }`}
-            onClick={() => onNavigate('manual')}
-          >
-            <div className="w-10 h-10 rounded-xl bg-ai/20 text-ai flex items-center justify-center">
-              <FileText className="w-5 h-5" />
-            </div>
-            <h3 className="text-lg font-bold text-white">3. Manual Conversation</h3>
-            <p className="text-xs text-slate-400 leading-relaxed">
-              Input turn-by-turn executive dialog or paste transcripts with realistic message bubbles. Generate structured intelligence with one click.
-            </p>
-            <div className="pt-2 flex items-center text-xs font-semibold text-ai gap-1">
-              <span>Open Dialog Editor</span>
               <ChevronRight className="w-4 h-4" />
             </div>
           </Card>

@@ -30,6 +30,10 @@ export const meetingService = {
     return getStoredMeetings();
   },
 
+  async getMeetings() {
+    return this.getAllMeetings();
+  },
+
   async getMeetingByCode(code) {
     const formatted = (code || '').trim().toUpperCase();
     
@@ -106,6 +110,42 @@ export const meetingService = {
       return res;
     } catch (e) {
       return { success: true };
+    }
+  },
+
+  async getChatMessages(code) {
+    const formatted = (code || '').trim().toUpperCase();
+    try {
+      const res = await api.get(`/meetings/${formatted}/messages`);
+      return res.messages || [];
+    } catch (e) {
+      console.warn('[MeetingService] Could not fetch remote chat messages:', e.message);
+      return [];
+    }
+  },
+
+  async sendChatMessage(code, messageData) {
+    const formatted = (code || '').trim().toUpperCase();
+    try {
+      const res = await api.post(`/meetings/${formatted}/messages`, {
+        meetingCode: formatted,
+        ...messageData
+      });
+      return res.message;
+    } catch (e) {
+      console.warn('[MeetingService] Error sending chat message to API:', e.message);
+      return null;
+    }
+  },
+
+  async analyzeChatMeeting(code) {
+    const formatted = (code || '').trim().toUpperCase();
+    try {
+      const res = await api.post(`/meetings/${formatted}/analyze`);
+      return res;
+    } catch (e) {
+      console.warn('[MeetingService] Error requesting AI chat meeting analysis:', e.message);
+      throw e;
     }
   },
 

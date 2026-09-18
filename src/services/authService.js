@@ -14,67 +14,87 @@ export const authService = {
   },
 
   async login(email, password) {
+    const cleanEmail = (email || '').trim();
+    if (!cleanEmail || !password) {
+      throw new Error('Please enter both your email address and password.');
+    }
+
     try {
-      // Try backend endpoint
-      const response = await api.post('/auth/login', { email, password });
+      const response = await api.post('/auth/login', { email: cleanEmail, password });
       if (response && response.token) {
         api.setToken(response.token);
         localStorage.setItem(USER_STORAGE_KEY, JSON.stringify(response.user));
         return response.user;
       }
-    } catch {
-      console.log('[Auth] Using local session fallback for demo.');
+      throw new Error('Authentication failed: No token received.');
+    } catch (err) {
+      // Re-throw server errors (wrong password, user not found, 400, 401, 404)
+      const isNetworkOffline = err.message && (err.message.includes('Failed to fetch') || err.message.includes('NetworkError'));
+      if (!isNetworkOffline) {
+        throw err;
+      }
+
+      console.log('[Auth] Network unreachable - local demo fallback used.');
+      const name = cleanEmail.split('@')[0].replace('.', ' ');
+      const formattedName = name.charAt(0).toUpperCase() + name.slice(1);
+      const mockUser = {
+        id: 'usr_' + Math.random().toString(36).substr(2, 9),
+        name: formattedName || 'Alex Rivera',
+        email: cleanEmail,
+        role: 'Host & Engineering Lead',
+        organization: 'FinEdge Platform',
+        avatar: (formattedName || 'AR').substring(0, 2).toUpperCase(),
+        hasVoiceProfile: false,
+        createdAt: new Date().toISOString()
+      };
+      api.setToken('mock_jwt_token_' + Date.now());
+      localStorage.setItem(USER_STORAGE_KEY, JSON.stringify(mockUser));
+      return mockUser;
     }
-
-    // High quality local fallback session for offline / demo mode
-    const name = email.split('@')[0].replace('.', ' ');
-    const formattedName = name.charAt(0).toUpperCase() + name.slice(1);
-    
-    // Check if voice profile has been registered for this user before
-    const hasVoiceProfile = localStorage.getItem(`g13_voice_profile_${email}`) !== null;
-
-    const mockUser = {
-      id: 'usr_' + Math.random().toString(36).substr(2, 9),
-      name: formattedName || 'Alex Rivera',
-      email: email,
-      role: 'Host & Engineering Lead',
-      organization: 'FinEdge Platform',
-      avatar: (formattedName || 'AR').substring(0, 2).toUpperCase(),
-      hasVoiceProfile: hasVoiceProfile,
-      createdAt: new Date().toISOString()
-    };
-
-    api.setToken('mock_jwt_token_' + Date.now());
-    localStorage.setItem(USER_STORAGE_KEY, JSON.stringify(mockUser));
-    return mockUser;
   },
 
-  async signup(name, email, password) {
+  async signup(name, email, password, organization = 'General') {
+    const cleanEmail = (email || '').trim();
+    const cleanName = (name || '').trim();
+
+    if (!cleanName || !cleanEmail || !password) {
+      throw new Error('Please enter your full name, work email address, and password.');
+    }
+
     try {
-      const response = await api.post('/auth/signup', { name, email, password });
+      const response = await api.post('/auth/signup', { 
+        name: cleanName, 
+        email: cleanEmail, 
+        password,
+        organization 
+      });
       if (response && response.token) {
         api.setToken(response.token);
         localStorage.setItem(USER_STORAGE_KEY, JSON.stringify(response.user));
         return response.user;
       }
-    } catch {
-      console.log('[Auth] Using local session fallback for signup.');
+      throw new Error('Registration failed: No token received.');
+    } catch (err) {
+      const isNetworkOffline = err.message && (err.message.includes('Failed to fetch') || err.message.includes('NetworkError'));
+      if (!isNetworkOffline) {
+        throw err;
+      }
+
+      console.log('[Auth] Network unreachable - local demo fallback used.');
+      const mockUser = {
+        id: 'usr_' + Math.random().toString(36).substr(2, 9),
+        name: cleanName,
+        email: cleanEmail,
+        role: 'Engineering Lead',
+        organization: organization || 'FinEdge Platform',
+        avatar: cleanName.substring(0, 2).toUpperCase(),
+        hasVoiceProfile: false,
+        createdAt: new Date().toISOString()
+      };
+      api.setToken('mock_jwt_token_' + Date.now());
+      localStorage.setItem(USER_STORAGE_KEY, JSON.stringify(mockUser));
+      return mockUser;
     }
-
-    const mockUser = {
-      id: 'usr_' + Math.random().toString(36).substr(2, 9),
-      name: name || 'Alex Rivera',
-      email: email,
-      role: 'Engineering Lead',
-      organization: 'FinEdge Platform',
-      avatar: (name || 'AR').substring(0, 2).toUpperCase(),
-      hasVoiceProfile: false, // Brand new account must complete voice memory onboarding!
-      createdAt: new Date().toISOString()
-    };
-
-    api.setToken('mock_jwt_token_' + Date.now());
-    localStorage.setItem(USER_STORAGE_KEY, JSON.stringify(mockUser));
-    return mockUser;
   },
 
   async loginDemoUser() {

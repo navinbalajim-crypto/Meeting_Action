@@ -1,0 +1,72 @@
+[
+  {
+    "id": "usr_1789759252076_o9xcja",
+    "name": "Alex Rivera",
+    "email": "alex.rivera@finedge.io",
+    "password_hash": "$2a$10$aWNzjhbpoN33rlk.41RlsuoUZmJsn/dZoJAxIMwC3mITr9CwIfMaa",
+    "role": "user",
+    "organization": "FinEdge Technologies",
+    "avatar": "AL",
+    "is_active": true,
+    "has_voice_profile": false,
+    "created_at": "2026-09-18T19:20:52.076Z",
+    "updated_at": "2026-09-18T19:31:31.006Z",
+    "last_login_at": "2026-09-18T19:31:31.006Z"
+  },
+  {
+    "id": "usr_1789759381736_v5i3kx",
+    "name": "User Alpha",
+    "email": "test_user_a_1n3cqc@enterprise.io",
+    "password_hash": "$2a$10$VLaHw0grxmsuKQc/qM60PeuWh5CbJGgwAkpOmfDMPQXPlpuAKg.Qi",
+    "role": "user",
+    "organization": "Alpha Corp",
+    "avatar": "US",
+    "is_active": true,
+    "has_voice_profile": false,
+    "created_at": "2026-09-18T19:23:01.736Z",
+    "updated_at": "2026-09-18T19:23:02.230Z",
+    "last_login_at": "2026-09-18T19:23:02.230Z"
+  },
+  {
+    "id": "usr_1789759382473_bevok5",
+    "name": "User Beta",
+    "email": "test_user_b_1n3cqc@client.io",
+    "password_hash": "$2a$10$Yl/ga4PyPjH3n1b5PKy1Xut7tGf83KETulCpaCvywTvoG.UV9GlGS",
+    "role": "user",
+    "organization": "Beta Client",
+    "avatar": "US",
+    "is_active": true,
+    "has_voice_profile": false,
+    "created_at": "2026-09-18T19:23:02.473Z",
+    "updated_at": "2026-09-18T19:23:02.473Z",
+    "last_login_at": null
+  },
+  {
+    "id": "usr_1789759503475_3n92q1",
+    "name": "User Alpha",
+    "email": "test_user_a_jqoafl@enterprise.io",
+    "password_hash": "$2a$10$HyBinz2SItwO69XggIxQmu1jZzyxQqClwblLlcLgjEmVSZWcuRWcq",
+    "role": "user",
+    "organization": "Alpha Corp",
+    "avatar": "US",
+    "is_active": true,
+    "has_voice_profile": false,
+    "created_at": "2026-09-18T19:25:03.475Z",
+    "updated_at": "2026-09-18T19:25:04.253Z",
+    "last_login_at": "2026-09-18T19:25:04.253Z"
+  },
+  {
+    "id": "usr_1789759504638_ut51od",
+    "name": "User Beta",
+    "email": "test_user_b_jqoafl@client.io",
+    "password_hash": "$2a$10$AS09MjZnMMSTW8IVswkLEOKvHPCWvLEMeZJG7n4b0FM9MQINNdttS",
+    "role": "user",
+    "organization": "Beta Client",
+    "avatar": "US",
+    "is_active": true,
+    "has_voice_profile": false,
+    "created_at": "2026-09-18T19:25:04.638Z",
+    "updated_at": "2026-09-18T19:25:04.638Z",
+    "last_login_at": null
+  }
+]

@@ -164,27 +164,3 @@ export const LIVE_DEMO_TRANSCRIPT = [
   }
 ];
 
-export const SAMPLE_MANUAL_CONVERSATIONS = [
-  {
-    name: "Enterprise SLA & Database Migration",
-    client: "Acme Global Corp",
-    turns: [
-      { speaker: "Alex Rivera (Host)", text: "Good morning team. We need to finalize the database failover architecture and SLA guarantees for Acme." },
-      { speaker: "David Kim (Client VP)", text: "Our main requirement is zero data loss (RPO = 0) and under 60 seconds failover (RTO < 60s)." },
-      { speaker: "Raj Patel (Architect)", text: "I'll provision the multi-AZ synchronous replication cluster on AWS by Thursday 4 PM." },
-      { speaker: "Alex Rivera (Host)", text: "Decided: We will standardize on Aurora PostgreSQL with automated failover." },
-      { speaker: "David Kim (Client VP)", text: "Please send over the updated disaster recovery runbook once ready." },
-      { speaker: "Elena Rostova (SecOps)", text: "I commit to delivering the verified DR runbook to David by Friday noon." }
-    ]
-  },
-  {
-    name: "Mobile App Biometrics & Security Review",
-    client: "Vanguard Mobility",
-    turns: [
-      { speaker: "Alex Rivera (Host)", text: "Let's review the biometrics SDK integration for iOS FaceID and Android BiometricPrompt." },
-      { speaker: "Lisa Wong (Client Lead)", text: "Our security team requires key attestation backed by the Secure Enclave / Titan M2 chip." },
-      { speaker: "Raj Patel (Architect)", text: "I will implement hardware-backed biometric key generation and provide sample repo by Wednesday." },
-      { speaker: "Alex Rivera (Host)", text: "Decision: We will deprecate legacy PIN fallback in favor of WebAuthn FIDO2 standards." }
-    ]
-  }
-];

@@ -2,49 +2,133 @@ import React, { useState } from 'react';
 import { Button } from '../components/common/Button';
 import { Badge } from '../components/common/Badge';
 import { useAuth } from '../context/AuthContext';
-import { Zap, Lock, Mail, User, Eye, EyeOff, Sparkles, ArrowRight, ShieldCheck } from 'lucide-react';
+import { 
+  Zap, 
+  Lock, 
+  Mail, 
+  User, 
+  Building, 
+  Eye, 
+  EyeOff, 
+  Sparkles, 
+  ArrowRight, 
+  ShieldCheck, 
+  AlertCircle, 
+  UserPlus, 
+  CheckCircle2 
+} from 'lucide-react';
 
 export const AuthPage = ({ onNavigate }) => {
   const { login, signup, loginDemo } = useAuth();
   const [tab, setTab] = useState('login'); // 'login' | 'signup' | 'forgot'
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState('');
+  const [errorInfo, setErrorInfo] = useState({ message: '', isNotFound: false, isWrongPass: false });
+  const [successMsg, setSuccessMsg] = useState('');
 
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    password: ''
+    password: '',
+    organization: ''
   });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError('');
+    setErrorInfo({ message: '', isNotFound: false, isWrongPass: false });
+    setSuccessMsg('');
     setLoading(true);
 
     try {
       if (tab === 'login') {
-        await login(formData.email || 'alex.rivera@finedge.io', formData.password || 'password123');
+        const cleanEmail = (formData.email || '').trim();
+        const cleanPass = formData.password || '';
+
+        if (!cleanEmail || !cleanPass) {
+          setErrorInfo({
+            message: 'Please enter both your email address and password.',
+            isNotFound: false,
+            isWrongPass: false
+          });
+          setLoading(false);
+          return;
+        }
+
+        await login(cleanEmail, cleanPass);
       } else if (tab === 'signup') {
-        await signup(formData.name || 'Alex Rivera', formData.email, formData.password);
+        const cleanName = (formData.name || '').trim();
+        const cleanEmail = (formData.email || '').trim();
+        const cleanPass = formData.password || '';
+
+        if (!cleanName || !cleanEmail || !cleanPass) {
+          setErrorInfo({
+            message: 'Please enter your full name, work email address, and password.',
+            isNotFound: false,
+            isWrongPass: false
+          });
+          setLoading(false);
+          return;
+        }
+
+        if (cleanPass.length < 6) {
+          setErrorInfo({
+            message: 'Password must be at least 6 characters long.',
+            isNotFound: false,
+            isWrongPass: false
+          });
+          setLoading(false);
+          return;
+        }
+
+        await signup(cleanName, cleanEmail, cleanPass, formData.organization || 'General');
       } else {
-        alert('Password reset instructions sent to your email.');
-        setTab('login');
+        setSuccessMsg('Password reset instructions sent to your email.');
+        setTimeout(() => setTab('login'), 2000);
       }
     } catch (err) {
-      setError(err.message || 'Authentication failed. Please check credentials.');
+      const isNotFound = !!(
+        err.notRegistered ||
+        err.code === 'USER_NOT_FOUND' ||
+        err.status === 404 ||
+        err.message?.toLowerCase().includes('no account') ||
+        err.message?.toLowerCase().includes('not found') ||
+        err.message?.toLowerCase().includes('generate')
+      );
+      const isWrongPass = !!(
+        err.code === 'WRONG_PASSWORD' ||
+        err.message?.toLowerCase().includes('wrong') ||
+        err.message?.toLowerCase().includes('incorrect password')
+      );
+
+      let message = err.message || 'Authentication failed. Please check credentials.';
+      if (isNotFound) {
+        message = 'No account found with this email ID. Please create an account to generate your User ID and password.';
+      } else if (isWrongPass) {
+        message = 'Wrong User ID or Password. Please check your credentials and try again.';
+      }
+
+      setErrorInfo({
+        message,
+        isNotFound,
+        isWrongPass
+      });
     } finally {
       setLoading(false);
     }
   };
 
   const handleDemoSignIn = async () => {
-    setError('');
+    setErrorInfo({ message: '', isNotFound: false, isWrongPass: false });
+    setSuccessMsg('');
     setLoading(true);
     try {
       await loginDemo();
     } catch (err) {
-      setError('Demo login error');
+      setErrorInfo({
+        message: 'Demo login error. Please verify backend connection.',
+        isNotFound: false,
+        isWrongPass: false
+      });
     } finally {
       setLoading(false);
     }
@@ -75,7 +159,7 @@ export const AuthPage = ({ onNavigate }) => {
           {/* Mode Switcher Tabs */}
           <div className="grid grid-cols-2 p-1 rounded-xl bg-black/40 border border-white/8 text-xs font-semibold">
             <button
-              onClick={() => { setTab('login'); setError(''); }}
+              onClick={() => { setTab('login'); setErrorInfo({ message: '', isNotFound: false, isWrongPass: false }); }}
               className={`py-2 rounded-lg transition-all ${
                 tab === 'login' ? 'bg-primary text-white shadow-sm' : 'text-slate-400 hover:text-white'
               }`}
@@ -83,7 +167,7 @@ export const AuthPage = ({ onNavigate }) => {
               Sign In
             </button>
             <button
-              onClick={() => { setTab('signup'); setError(''); }}
+              onClick={() => { setTab('signup'); setErrorInfo({ message: '', isNotFound: false, isWrongPass: false }); }}
               className={`py-2 rounded-lg transition-all ${
                 tab === 'signup' ? 'bg-primary text-white shadow-sm' : 'text-slate-400 hover:text-white'
               }`}
@@ -92,30 +176,83 @@ export const AuthPage = ({ onNavigate }) => {
             </button>
           </div>
 
-          {error && (
-            <div className="p-3 rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-300 text-xs text-center">
-              {error}
+          {/* Success Message */}
+          {successMsg && (
+            <div className="p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 text-xs flex items-center gap-2">
+              <CheckCircle2 className="w-4 h-4 flex-shrink-0" />
+              <span>{successMsg}</span>
+            </div>
+          )}
+
+          {/* Error Message & Guided Recovery */}
+          {errorInfo.message && (
+            <div className={`p-4 rounded-2xl border text-xs leading-relaxed space-y-2.5 transition-all ${
+              errorInfo.isNotFound 
+                ? 'bg-amber-500/10 border-amber-500/30 text-amber-200' 
+                : 'bg-rose-500/10 border-rose-500/30 text-rose-300'
+            }`}>
+              <div className="flex items-start gap-2.5">
+                <AlertCircle className={`w-4 h-4 flex-shrink-0 mt-0.5 ${
+                  errorInfo.isNotFound ? 'text-amber-400' : 'text-rose-400'
+                }`} />
+                <div className="flex-1 space-y-2">
+                  <p className="font-semibold leading-normal">{errorInfo.message}</p>
+                  
+                  {/* If user is not present in DB, invite them to generate credentials */}
+                  {errorInfo.isNotFound && (
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setTab('signup');
+                        setErrorInfo({ message: '', isNotFound: false, isWrongPass: false });
+                      }}
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-amber-500/20 hover:bg-amber-500/30 text-amber-200 border border-amber-500/40 text-[11px] font-bold tracking-wide transition-all shadow-sm"
+                    >
+                      <UserPlus className="w-3.5 h-3.5" />
+                      Create Account (Generate ID & Password) →
+                    </button>
+                  )}
+                </div>
+              </div>
             </div>
           )}
 
           <form onSubmit={handleSubmit} className="space-y-4">
             {tab === 'signup' && (
-              <div>
-                <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1.5">
-                  Full Name
-                </label>
-                <div className="relative">
-                  <User className="w-4 h-4 text-slate-500 absolute left-3.5 top-1/2 -translate-y-1/2" />
-                  <input
-                    type="text"
-                    required
-                    placeholder="Alex Rivera"
-                    value={formData.name}
-                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className="w-full pl-10 pr-3.5 py-2.5 rounded-xl bg-[#080B16] border border-white/10 text-white placeholder-slate-500 focus:outline-none focus:border-primary text-sm"
-                  />
+              <>
+                <div>
+                  <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1.5">
+                    Full Name
+                  </label>
+                  <div className="relative">
+                    <User className="w-4 h-4 text-slate-500 absolute left-3.5 top-1/2 -translate-y-1/2" />
+                    <input
+                      type="text"
+                      required
+                      placeholder="e.g. Alex Rivera"
+                      value={formData.name}
+                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                      className="w-full pl-10 pr-3.5 py-2.5 rounded-xl bg-[#080B16] border border-white/10 text-white placeholder-slate-500 focus:outline-none focus:border-primary text-sm"
+                    />
+                  </div>
                 </div>
-              </div>
+
+                <div>
+                  <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1.5">
+                    Organization / Company <span className="text-[10px] text-slate-500 font-normal lowercase">(optional)</span>
+                  </label>
+                  <div className="relative">
+                    <Building className="w-4 h-4 text-slate-500 absolute left-3.5 top-1/2 -translate-y-1/2" />
+                    <input
+                      type="text"
+                      placeholder="e.g. Acme Technologies"
+                      value={formData.organization}
+                      onChange={(e) => setFormData({ ...formData, organization: e.target.value })}
+                      className="w-full pl-10 pr-3.5 py-2.5 rounded-xl bg-[#080B16] border border-white/10 text-white placeholder-slate-500 focus:outline-none focus:border-primary text-sm"
+                    />
+                  </div>
+                </div>
+              </>
             )}
 
             <div>
@@ -127,7 +264,7 @@ export const AuthPage = ({ onNavigate }) => {
                 <input
                   type="email"
                   required
-                  placeholder="alex.rivera@finedge.io"
+                  placeholder="name@company.com"
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   className="w-full pl-10 pr-3.5 py-2.5 rounded-xl bg-[#080B16] border border-white/10 text-white placeholder-slate-500 focus:outline-none focus:border-primary text-sm"
@@ -173,11 +310,11 @@ export const AuthPage = ({ onNavigate }) => {
             <Button
               type="submit"
               variant="primary"
-              className="w-full py-3 mt-2 text-sm shadow-glow-sm"
+              className="w-full py-3 mt-2 text-sm shadow-glow-sm font-semibold"
               loading={loading}
               icon={ArrowRight}
             >
-              {tab === 'login' ? 'Sign In to Workspace' : 'Create Account & Continue'}
+              {tab === 'login' ? 'Sign In to Workspace' : 'Create Account & Generate Credentials'}
             </Button>
           </form>
 
