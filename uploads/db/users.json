@@ -92,8 +92,8 @@
     "is_active": true,
     "has_voice_profile": false,
     "created_at": "2026-09-19T00:51:01.752Z",
-    "updated_at": "2026-09-19T00:51:01.752Z",
-    "last_login_at": null
+    "updated_at": "2026-09-19T03:58:02.720Z",
+    "last_login_at": "2026-09-19T03:58:02.720Z"
   },
   {
     "id": "usr_1789779089376_l7boit",
@@ -106,8 +106,8 @@
     "is_active": true,
     "has_voice_profile": false,
     "created_at": "2026-09-19T00:51:29.376Z",
-    "updated_at": "2026-09-19T02:51:18.240Z",
-    "last_login_at": "2026-09-19T02:51:18.240Z"
+    "updated_at": "2026-09-19T03:50:35.604Z",
+    "last_login_at": "2026-09-19T03:50:35.604Z"
   },
   {
     "id": "usr_1789787789376_f2gatw",
@@ -163,6 +163,76 @@
     "has_voice_profile": false,
     "created_at": "2026-09-19T03:23:36.817Z",
     "updated_at": "2026-09-19T03:23:36.817Z",
+    "last_login_at": null
+  },
+  {
+    "id": "usr_1789789685975_oprz20",
+    "name": "navin",
+    "email": "navin.balaji@finedge.io",
+    "password_hash": "$2a$10$gtcZhkzj9INf18J.w2.Io.0b1BLTSg5/OxcIC6v.NVBYeiBcKK2oC",
+    "role": "user",
+    "organization": "General",
+    "avatar": "NA",
+    "is_active": true,
+    "has_voice_profile": false,
+    "created_at": "2026-09-19T03:48:05.975Z",
+    "updated_at": "2026-09-19T03:48:05.975Z",
+    "last_login_at": null
+  },
+  {
+    "id": "usr_1789789851456_3tgvho",
+    "name": "navin",
+    "email": "navin@gmail.com",
+    "password_hash": "$2a$10$Dy/U3yDvu8RlDfjp1/M6WOB2rWEv/c7Ugy6QeUb.n1aztpHinFdVi",
+    "role": "user",
+    "organization": "General",
+    "avatar": "NA",
+    "is_active": true,
+    "has_voice_profile": false,
+    "created_at": "2026-09-19T03:50:51.457Z",
+    "updated_at": "2026-09-19T03:50:51.457Z",
+    "last_login_at": null
+  },
+  {
+    "id": "usr_1789789938414_m3o8e3",
+    "name": "Test Create Account",
+    "email": "test_creation_1789789938300@example.com",
+    "password_hash": "$2a$10$a4QsWopR6nz84V/0MEqSXuAaq5oCrzlnLFMYcA..146cAxVGR7iOy",
+    "role": "user",
+    "organization": "Test Org",
+    "avatar": "TE",
+    "is_active": true,
+    "has_voice_profile": false,
+    "created_at": "2026-09-19T03:52:18.414Z",
+    "updated_at": "2026-09-19T03:52:18.414Z",
+    "last_login_at": null
+  },
+  {
+    "id": "usr_1789789948055_xvpoa5",
+    "name": "Test Create Account Vite",
+    "email": "test_creation_vite_1789789947953@example.com",
+    "password_hash": "$2a$10$6uXfyRLo7PY8rJD23LBIV.D7dD6vXL8xLthdRJRBC.IFcjiCYW4kW",
+    "role": "user",
+    "organization": "Test Org",
+    "avatar": "TE",
+    "is_active": true,
+    "has_voice_profile": false,
+    "created_at": "2026-09-19T03:52:28.055Z",
+    "updated_at": "2026-09-19T03:52:28.055Z",
+    "last_login_at": null
+  },
+  {
+    "id": "usr_1789790190933_nis88k",
+    "name": "John Doe",
+    "email": "johndoe_test_debug@example.com",
+    "password_hash": "$2a$10$0OtXTyfw1qfug720OEpzNerCvEw7vZuj9vWCAmdQN8SBVOMhP/jIW",
+    "role": "user",
+    "organization": "Acme Corp",
+    "avatar": "JO",
+    "is_active": true,
+    "has_voice_profile": false,
+    "created_at": "2026-09-19T03:56:30.933Z",
+    "updated_at": "2026-09-19T03:56:30.933Z",
     "last_login_at": null
   }
 ]
