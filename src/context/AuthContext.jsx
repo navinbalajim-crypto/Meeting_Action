@@ -26,6 +26,7 @@ export const AuthProvider = ({ children, onNavigate }) => {
       const loggedUser = await authService.login(email, password);
       setUser(loggedUser);
       setLoading(false);
+      window.location.hash = 'dashboard';
       if (onNavigate) {
         onNavigate('dashboard');
       }
@@ -36,12 +37,13 @@ export const AuthProvider = ({ children, onNavigate }) => {
     }
   };
 
-  const signup = async (name, email, password) => {
+  const signup = async (name, email, password, organization = 'General') => {
     setLoading(true);
     try {
-      const newUser = await authService.signup(name, email, password);
+      const newUser = await authService.signup(name, email, password, organization);
       setUser(newUser);
       setLoading(false);
+      window.location.hash = 'dashboard';
       if (onNavigate) {
         onNavigate('dashboard');
       }

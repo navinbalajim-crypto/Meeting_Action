@@ -42,14 +42,15 @@ export const authController = {
         return res.status(400).json({ success: false, error: { code: 'INVALID_INPUT', message: 'Password must be at least 6 characters long.' } });
       }
 
-      const existing = await userRepository.findByEmail(email);
+      const cleanEmail = (email || '').toLowerCase().trim();
+      const existing = await userRepository.findByEmail(cleanEmail);
       if (existing) {
         return res.status(409).json({ success: false, error: { code: 'EMAIL_EXISTS', message: 'An account with this email already exists.' } });
       }
 
       const user = await userRepository.create({
         name: name.trim(),
-        email: email.trim(),
+        email: cleanEmail,
         password,
         organization: organization || 'General'
       });

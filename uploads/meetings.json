@@ -1,5 +1,189 @@
 [
   {
+    "id": "meet-1789791671013",
+    "code": "G13-U96YH",
+    "title": "Live Meeting (G13-U96YH)",
+    "owner_id": "usr_anonymous",
+    "client": "Enterprise Client",
+    "organization": "Core Platform",
+    "date": "Today",
+    "duration": "0 min",
+    "rawDurationSec": 0,
+    "status": "active",
+    "isDemo": false,
+    "type": "Strategy & Architecture",
+    "audioUrl": null,
+    "participants": [],
+    "summary": "",
+    "report": null,
+    "transcript": [
+      {
+        "id": "msg_1789791670842_nh5i",
+        "speakerId": "usr_1789759252076_o9xcja",
+        "speakerName": "Alex Rivera",
+        "speakerRole": "user",
+        "isUser": true,
+        "isBot": false,
+        "timestamp": "09:51 AM",
+        "text": "I'll complete the payment API refactor by Friday at 5:00 PM EST.",
+        "commitmentDetails": {
+          "action": "Complete complete the payment API refactor by Friday at 5:00 PM EST.",
+          "owner": "Alex Rivera",
+          "deadline": "by Friday at 5:00 PM EST",
+          "confidence": "High (98%)"
+        }
+      },
+      {
+        "id": "msg_1789791672508_t56kf",
+        "speakerId": "bot_g13_ai",
+        "speakerName": "G13 AI Copilot",
+        "speakerRole": "AI Intelligence Assistant",
+        "isUser": false,
+        "isBot": true,
+        "timestamp": "09:51 am",
+        "text": "⚡ Verified Commitment Logged: \"Complete complete the payment API refactor by Friday at 5:00 PM EST.\" assigned to Alex Rivera (Deadline: by Friday at 5:00 PM EST). Verbatim evidence preserved.",
+        "commitmentDetails": null
+      },
+      {
+        "id": "msg_1789791680629_qpux",
+        "speakerId": "usr_1789789685975_oprz20",
+        "speakerName": "navin",
+        "speakerRole": "user",
+        "isUser": true,
+        "isBot": false,
+        "timestamp": "09:51 AM",
+        "text": "@ai summarize current commitments and deadlines.",
+        "commitmentDetails": null
+      },
+      {
+        "id": "msg_1789791682071_xx9lp",
+        "speakerId": "bot_g13_ai",
+        "speakerName": "G13 AI Copilot",
+        "speakerRole": "AI Intelligence Assistant",
+        "isUser": false,
+        "isBot": true,
+        "timestamp": "09:51 am",
+        "text": "📋 Executive Sync Summary: 3 messages exchanged across 3 participants. Commitments and action items are actively tracked in database.",
+        "commitmentDetails": null
+      }
+    ],
+    "audioMetrics": null,
+    "stats": {
+      "commitmentsCount": 0,
+      "decisionsCount": 0,
+      "actionsCount": 0
+    },
+    "createdAt": "2026-09-19T04:21:11.013Z",
+    "updatedAt": "2026-09-19T04:21:21.916Z",
+    "chatMessages": [
+      {
+        "id": "msg_1789791670842_nh5i",
+        "meeting_id": "meet-1789791671013",
+        "meeting_code": "G13-U96YH",
+        "sender_id": "usr_1789759252076_o9xcja",
+        "sender_name": "Alex Rivera",
+        "sender_role": "user",
+        "is_user": true,
+        "is_bot": false,
+        "text": "I'll complete the payment API refactor by Friday at 5:00 PM EST.",
+        "timestamp_label": "09:51 AM",
+        "commitment_details": {
+          "action": "Complete complete the payment API refactor by Friday at 5:00 PM EST.",
+          "owner": "Alex Rivera",
+          "deadline": "by Friday at 5:00 PM EST",
+          "confidence": "High (98%)"
+        },
+        "created_at": "2026-09-19T04:21:11.055Z"
+      },
+      {
+        "id": "msg_1789791672508_t56kf",
+        "meeting_id": "meet-1789791671013",
+        "meeting_code": "G13-U96YH",
+        "sender_id": "bot_g13_ai",
+        "sender_name": "G13 AI Copilot",
+        "sender_role": "AI Intelligence Assistant",
+        "is_user": false,
+        "is_bot": true,
+        "text": "⚡ Verified Commitment Logged: \"Complete complete the payment API refactor by Friday at 5:00 PM EST.\" assigned to Alex Rivera (Deadline: by Friday at 5:00 PM EST). Verbatim evidence preserved.",
+        "timestamp_label": "09:51 am",
+        "commitment_details": null,
+        "created_at": "2026-09-19T04:21:12.422Z"
+      },
+      {
+        "id": "msg_1789791680629_qpux",
+        "meeting_id": "meet-1789791671013",
+        "meeting_code": "G13-U96YH",
+        "sender_id": "usr_1789789685975_oprz20",
+        "sender_name": "navin",
+        "sender_role": "user",
+        "is_user": true,
+        "is_bot": false,
+        "text": "@ai summarize current commitments and deadlines.",
+        "timestamp_label": "09:51 AM",
+        "commitment_details": null,
+        "created_at": "2026-09-19T04:21:20.764Z"
+      },
+      {
+        "id": "msg_1789791682071_xx9lp",
+        "meeting_id": "meet-1789791671013",
+        "meeting_code": "G13-U96YH",
+        "sender_id": "bot_g13_ai",
+        "sender_name": "G13 AI Copilot",
+        "sender_role": "AI Intelligence Assistant",
+        "is_user": false,
+        "is_bot": true,
+        "text": "📋 Executive Sync Summary: 3 messages exchanged across 3 participants. Commitments and action items are actively tracked in database.",
+        "timestamp_label": "09:51 am",
+        "commitment_details": null,
+        "created_at": "2026-09-19T04:21:21.916Z"
+      }
+    ]
+  },
+  {
+    "id": "meet-1789791655005",
+    "code": "G13-XVP2M",
+    "title": "gfdasfsd",
+    "owner_id": "usr_1789789685975_oprz20",
+    "client": "dsf",
+    "organization": "Core Platform & Architecture",
+    "date": "Just now",
+    "duration": "0 min",
+    "rawDurationSec": 0,
+    "status": "active",
+    "isDemo": false,
+    "type": "Client Architecture Review",
+    "audioUrl": null,
+    "participants": [
+      {
+        "id": "usr_1789789685975_oprz20",
+        "name": "navin",
+        "role": "Host & Engineering Lead",
+        "isUser": true,
+        "avatar": "NA",
+        "color": "#5B6CFF"
+      },
+      {
+        "id": "part_1789791655005",
+        "name": "dsf Lead",
+        "role": "Client Representative",
+        "isUser": false,
+        "avatar": "CR",
+        "color": "#EC4899"
+      }
+    ],
+    "summary": "Live meeting in progress. AI Agent actively listening across all connected devices.",
+    "report": null,
+    "transcript": [],
+    "audioMetrics": null,
+    "stats": {
+      "commitmentsCount": 0,
+      "decisionsCount": 0,
+      "actionsCount": 0
+    },
+    "createdAt": "2026-09-19T04:20:55.005Z",
+    "updatedAt": "2026-09-19T04:20:55.005Z"
+  },
+  {
     "id": "meet-1789788216852",
     "code": "G13-1KW8F",
     "title": "Confidential Strategy Sync (User A Only)",

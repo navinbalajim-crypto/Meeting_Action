@@ -202,9 +202,14 @@ export function App() {
     return 'auth';
   });
 
+  const handleGlobalNavigate = (view) => {
+    setCurrentView(view);
+    window.location.hash = view;
+  };
+
   return (
     <ToastProvider>
-      <AuthProvider onNavigate={setCurrentView}>
+      <AuthProvider onNavigate={handleGlobalNavigate}>
         <MeetingProvider>
           <AppContent
             currentView={currentView}

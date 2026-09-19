@@ -19,7 +19,7 @@ import {
 } from 'lucide-react';
 
 export const AuthPage = ({ onNavigate }) => {
-  const { login, signup, loginDemo } = useAuth();
+  const { user, login, signup } = useAuth();
   const [tab, setTab] = useState('login'); // 'login' | 'signup' | 'forgot'
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -32,6 +32,17 @@ export const AuthPage = ({ onNavigate }) => {
     password: '',
     organization: ''
   });
+
+  // If user is already authenticated, transition directly to dashboard
+  React.useEffect(() => {
+    if (user) {
+      if (onNavigate) {
+        onNavigate('dashboard');
+      } else {
+        window.location.hash = 'dashboard';
+      }
+    }
+  }, [user, onNavigate]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -55,6 +66,11 @@ export const AuthPage = ({ onNavigate }) => {
         }
 
         await login(cleanEmail, cleanPass);
+        if (onNavigate) {
+          onNavigate('dashboard');
+        } else {
+          window.location.hash = 'dashboard';
+        }
       } else if (tab === 'signup') {
         const cleanName = (formData.name || '').trim();
         const cleanEmail = (formData.email || '').trim();
@@ -81,6 +97,11 @@ export const AuthPage = ({ onNavigate }) => {
         }
 
         await signup(cleanName, cleanEmail, cleanPass, formData.organization || 'General');
+        if (onNavigate) {
+          onNavigate('dashboard');
+        } else {
+          window.location.hash = 'dashboard';
+        }
       } else {
         setSuccessMsg('Password reset instructions sent to your email.');
         setTimeout(() => setTab('login'), 2000);
@@ -111,23 +132,6 @@ export const AuthPage = ({ onNavigate }) => {
         message,
         isNotFound,
         isWrongPass
-      });
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const handleDemoSignIn = async () => {
-    setErrorInfo({ message: '', isNotFound: false, isWrongPass: false });
-    setSuccessMsg('');
-    setLoading(true);
-    try {
-      await loginDemo();
-    } catch (err) {
-      setErrorInfo({
-        message: 'Demo login error. Please verify backend connection.',
-        isNotFound: false,
-        isWrongPass: false
       });
     } finally {
       setLoading(false);
@@ -318,26 +322,7 @@ export const AuthPage = ({ onNavigate }) => {
             </Button>
           </form>
 
-          {/* Quick Demo Access Divider */}
-          <div className="relative flex items-center justify-center pt-2">
-            <div className="border-t border-white/10 w-full" />
-            <span className="bg-[#101526] px-3 text-[11px] text-slate-400 font-mono uppercase tracking-wider absolute">
-              Quick Evaluator Access
-            </span>
-          </div>
-
-          <Button
-            type="button"
-            variant="ai"
-            className="w-full py-3 text-xs"
-            onClick={handleDemoSignIn}
-            loading={loading}
-            icon={Sparkles}
-          >
-            1-Click Demo Login as Alex Rivera (Engineering Lead)
-          </Button>
-
-          <div className="text-center">
+          <div className="text-center pt-2">
             <p className="text-[11px] text-slate-400">
               New accounts automatically proceed to Voice Memory Onboarding to calibrate speaker recognition.
             </p>
