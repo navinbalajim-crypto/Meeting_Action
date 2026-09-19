@@ -20,10 +20,10 @@ export const AuthProvider = ({ children, onNavigate }) => {
     setLoading(false);
   }, []);
 
-  const login = async (email, password, portal = null) => {
+  const login = async (email, password) => {
     setLoading(true);
     try {
-      const loggedUser = await authService.login(email, password, portal);
+      const loggedUser = await authService.login(email, password);
       setUser(loggedUser);
       setLoading(false);
       if (onNavigate) {
@@ -36,10 +36,10 @@ export const AuthProvider = ({ children, onNavigate }) => {
     }
   };
 
-  const signup = async (name, email, password, organization = 'General', role = 'user') => {
+  const signup = async (name, email, password) => {
     setLoading(true);
     try {
-      const newUser = await authService.signup(name, email, password, organization, role);
+      const newUser = await authService.signup(name, email, password);
       setUser(newUser);
       setLoading(false);
       if (onNavigate) {
@@ -52,9 +52,9 @@ export const AuthProvider = ({ children, onNavigate }) => {
     }
   };
 
-  const loginDemo = async (portal = 'user') => {
+  const loginDemo = async () => {
     setLoading(true);
-    const demoUser = await authService.loginDemoUser(portal);
+    const demoUser = await authService.loginDemoUser();
     setUser(demoUser);
     setLoading(false);
     if (onNavigate) {
