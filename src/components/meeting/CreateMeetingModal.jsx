@@ -26,7 +26,7 @@ export const CreateMeetingModal = ({ isOpen, onClose, onCreated }) => {
   const [copiedCode, setCopiedCode] = useState(false);
   const [copiedLink, setCopiedLink] = useState(false);
   const [copiedPhoneLink, setCopiedPhoneLink] = useState(false);
-  const [networkIp, setNetworkIp] = useState('10.206.44.141');
+  const [networkIp, setNetworkIp] = useState('10.137.242.141');
 
   const [formData, setFormData] = useState({
     title: '',
@@ -70,7 +70,7 @@ export const CreateMeetingModal = ({ isOpen, onClose, onCreated }) => {
     if (!createdData?.code) return '';
     const base = (networkIp && networkIp !== 'localhost')
       ? `http://${networkIp}:3000`
-      : (window.location.hostname !== 'localhost' ? window.location.origin : 'http://10.206.44.141:3000');
+      : (window.location.hostname !== 'localhost' ? window.location.origin : 'http://10.137.242.141:3000');
     return `${base}/#join=${createdData.code}&title=${encodeURIComponent(createdData.title || '')}&client=${encodeURIComponent(createdData.client || '')}`;
   };
 

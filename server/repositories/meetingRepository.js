@@ -445,7 +445,7 @@ export const meetingRepository = {
           for (let i = 0; i < actionItems.length; i++) {
             const act = actionItems[i];
             await query(
-              `INSERT INTO action_items (id, meeting_id, task, owner, deadline, status, confidence, speaker_name, timestamp_label, evidence_quote, created_at)
+              `INSERT INTO action_items (id, meeting_id, task, owner, deadline, status, confidence, speaker, timestamp_label, evidence_quote, created_at)
                VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)
                ON CONFLICT (id) DO UPDATE 
                SET task = EXCLUDED.task, owner = EXCLUDED.owner, deadline = EXCLUDED.deadline, status = EXCLUDED.status`,

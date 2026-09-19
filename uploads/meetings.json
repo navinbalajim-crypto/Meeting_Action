@@ -1,5 +1,49 @@
 [
   {
+    "id": "meet-1789779133594",
+    "code": "G13-HUGBT",
+    "title": "dadadad",
+    "owner_id": "usr_1789779061752_7mn3ce",
+    "client": "da",
+    "organization": "Core Platform & Architecture",
+    "date": "Just now",
+    "duration": "0 min",
+    "rawDurationSec": 0,
+    "status": "active",
+    "isDemo": false,
+    "type": "Client Architecture Review",
+    "audioUrl": null,
+    "participants": [
+      {
+        "id": "usr_1789779061752_7mn3ce",
+        "name": "hi",
+        "role": "Host & Engineering Lead",
+        "isUser": true,
+        "avatar": "HI",
+        "color": "#5B6CFF"
+      },
+      {
+        "id": "part_1789779133594",
+        "name": "da Lead",
+        "role": "Client Representative",
+        "isUser": false,
+        "avatar": "CR",
+        "color": "#EC4899"
+      }
+    ],
+    "summary": "Live meeting in progress. AI Agent actively listening across all connected devices.",
+    "report": null,
+    "transcript": [],
+    "audioMetrics": null,
+    "stats": {
+      "commitmentsCount": 0,
+      "decisionsCount": 0,
+      "actionsCount": 0
+    },
+    "createdAt": "2026-09-19T00:52:13.594Z",
+    "updatedAt": "2026-09-19T00:52:13.594Z"
+  },
+  {
     "id": "meet-1789760710639",
     "code": "G13-UOWIE",
     "title": "hackathon",

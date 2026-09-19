@@ -10,8 +10,8 @@
     "is_active": true,
     "has_voice_profile": false,
     "created_at": "2026-09-18T19:20:52.076Z",
-    "updated_at": "2026-09-18T19:31:31.006Z",
-    "last_login_at": "2026-09-18T19:31:31.006Z"
+    "updated_at": "2026-09-19T02:52:37.392Z",
+    "last_login_at": "2026-09-19T02:52:37.392Z"
   },
   {
     "id": "usr_1789759381736_v5i3kx",
@@ -68,5 +68,45 @@
     "created_at": "2026-09-18T19:25:04.638Z",
     "updated_at": "2026-09-18T19:25:04.638Z",
     "last_login_at": null
+  },
+  {
+    "id": "usr_anonymous",
+    "name": "Guest User",
+    "email": "guest@finedge.local",
+    "password_hash": "$2a$10$rQ7TvloH5Pc/FF/0Mv9QUu1nK8fRpb1Y1iz5ttYqe/AuYFSGkAf6K",
+    "role": "user",
+    "organization": "General",
+    "avatar": "GU",
+    "is_active": true,
+    "created_at": "2026-09-19T00:47:20.165Z",
+    "updated_at": "2026-09-19T00:47:20.165Z"
+  },
+  {
+    "id": "usr_1789779061752_7mn3ce",
+    "name": "hi",
+    "email": "navinbalaji.m@gmail.com",
+    "password_hash": "$2a$10$Ul1Y3R97V43ONZfpyaQJNO13bEONuUwGDw66jU7QL9i/sHU9vddN.",
+    "role": "user",
+    "organization": "General",
+    "avatar": "HI",
+    "is_active": true,
+    "has_voice_profile": false,
+    "created_at": "2026-09-19T00:51:01.752Z",
+    "updated_at": "2026-09-19T00:51:01.752Z",
+    "last_login_at": null
+  },
+  {
+    "id": "usr_1789779089376_l7boit",
+    "name": "bala",
+    "email": "bala31@gmail.com",
+    "password_hash": "$2a$10$XRf3BOb57DfTWw7kGB6IG.s/zucfjkWOn1u1BFeqwd1qaKzEOa15a",
+    "role": "user",
+    "organization": "General",
+    "avatar": "BA",
+    "is_active": true,
+    "has_voice_profile": false,
+    "created_at": "2026-09-19T00:51:29.376Z",
+    "updated_at": "2026-09-19T02:51:18.240Z",
+    "last_login_at": "2026-09-19T02:51:18.240Z"
   }
 ]
