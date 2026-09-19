@@ -10,8 +10,8 @@
     "is_active": true,
     "has_voice_profile": false,
     "created_at": "2026-09-18T19:20:52.076Z",
-    "updated_at": "2026-09-19T02:52:37.392Z",
-    "last_login_at": "2026-09-19T02:52:37.392Z"
+    "updated_at": "2026-09-19T03:30:54.611Z",
+    "last_login_at": "2026-09-19T03:30:54.611Z"
   },
   {
     "id": "usr_1789759381736_v5i3kx",
@@ -108,5 +108,61 @@
     "created_at": "2026-09-19T00:51:29.376Z",
     "updated_at": "2026-09-19T02:51:18.240Z",
     "last_login_at": "2026-09-19T02:51:18.240Z"
+  },
+  {
+    "id": "usr_1789787789376_f2gatw",
+    "name": "Elena Rostova (Admin)",
+    "email": "admin@finedge.io",
+    "password_hash": "$2a$10$1Oy8CdPyCXPTLNgfU49o4uuE1PI6N09fZtXqfv5y1ycsCUXw2K.CS",
+    "role": "admin",
+    "organization": "G13 Security & Compliance Admin",
+    "avatar": "EL",
+    "is_active": true,
+    "has_voice_profile": false,
+    "created_at": "2026-09-19T03:16:29.376Z",
+    "updated_at": "2026-09-19T03:29:20.810Z",
+    "last_login_at": "2026-09-19T03:29:20.810Z"
+  },
+  {
+    "id": "usr_1789787942421_ojoyu5",
+    "name": "New Officer",
+    "email": "role_test_1789787942292@finedge.io",
+    "password_hash": "$2a$10$B/cG3XTXKA16uG2kd/glIOmUE94SZPvq1kHqPoNOagf2IUuSfhhPm",
+    "role": "user",
+    "organization": "General",
+    "avatar": "NE",
+    "is_active": true,
+    "has_voice_profile": false,
+    "created_at": "2026-09-19T03:19:02.421Z",
+    "updated_at": "2026-09-19T03:19:02.421Z",
+    "last_login_at": null
+  },
+  {
+    "id": "usr_1789788216362_c9udj4",
+    "name": "User Alpha",
+    "email": "test_user_a_tps1ut@enterprise.io",
+    "password_hash": "$2a$10$BwR6djRNwHtK3.fx6UIaveZ8zPc1gzXOWkWFJhduYMx7CdHZysQKW",
+    "role": "user",
+    "organization": "Alpha Corp",
+    "avatar": "US",
+    "is_active": true,
+    "has_voice_profile": false,
+    "created_at": "2026-09-19T03:23:36.362Z",
+    "updated_at": "2026-09-19T03:23:36.629Z",
+    "last_login_at": "2026-09-19T03:23:36.629Z"
+  },
+  {
+    "id": "usr_1789788216817_w3vo6o",
+    "name": "User Beta",
+    "email": "test_user_b_tps1ut@client.io",
+    "password_hash": "$2a$10$ng2cIjcVCZSPMSrapKzwdeDGiZ3watrv8SOC1QC8d4yNf30qFgcXK",
+    "role": "user",
+    "organization": "Beta Client",
+    "avatar": "US",
+    "is_active": true,
+    "has_voice_profile": false,
+    "created_at": "2026-09-19T03:23:36.817Z",
+    "updated_at": "2026-09-19T03:23:36.817Z",
+    "last_login_at": null
   }
 ]

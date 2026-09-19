@@ -1,5 +1,49 @@
 [
   {
+    "id": "meet-1789788216852",
+    "code": "G13-1KW8F",
+    "title": "Confidential Strategy Sync (User A Only)",
+    "owner_id": "usr_1789788216362_c9udj4",
+    "client": "Acme Alpha",
+    "organization": "Alpha Corp",
+    "date": "Just now",
+    "duration": "0 min",
+    "rawDurationSec": 0,
+    "status": "active",
+    "isDemo": false,
+    "type": "Strategy & Architecture",
+    "audioUrl": null,
+    "participants": [
+      {
+        "id": "usr_1789788216362_c9udj4",
+        "name": "User Alpha",
+        "role": "Host & Engineering Lead",
+        "isUser": true,
+        "avatar": "US",
+        "color": "#5B6CFF"
+      },
+      {
+        "id": "part_1789788216852",
+        "name": "Acme Alpha Lead",
+        "role": "Client Representative",
+        "isUser": false,
+        "avatar": "CR",
+        "color": "#EC4899"
+      }
+    ],
+    "summary": "Live meeting in progress. AI Agent actively listening across all connected devices.",
+    "report": null,
+    "transcript": [],
+    "audioMetrics": null,
+    "stats": {
+      "commitmentsCount": 0,
+      "decisionsCount": 0,
+      "actionsCount": 0
+    },
+    "createdAt": "2026-09-19T03:23:36.852Z",
+    "updatedAt": "2026-09-19T03:23:36.852Z"
+  },
+  {
     "id": "meet-1789779133594",
     "code": "G13-HUGBT",
     "title": "dadadad",

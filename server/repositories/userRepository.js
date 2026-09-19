@@ -140,6 +140,19 @@ export const userRepository = {
       });
     }
 
+    const adminEmail = 'admin@finedge.io';
+    const existingAdmin = await this.findByEmail(adminEmail);
+    if (!existingAdmin) {
+      console.log('[UserRepo] Seeding standard admin user account (Elena Rostova - Admin)...');
+      await this.create({
+        name: 'Elena Rostova (Admin)',
+        email: adminEmail,
+        password: 'AdminPass123!',
+        role: 'admin',
+        organization: 'G13 Security & Compliance Admin'
+      });
+    }
+
     // Ensure usr_anonymous exists for guest/public meeting references
     const anonId = 'usr_anonymous';
     const existingAnon = await this.findById(anonId);

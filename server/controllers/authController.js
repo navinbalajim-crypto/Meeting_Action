@@ -27,7 +27,7 @@ function generateRefreshToken() {
 export const authController = {
   async register(req, res) {
     try {
-      const { name, email, password, organization } = req.body;
+      const { name, email, password, organization, role } = req.body;
 
       if (!name || !name.trim()) {
         return res.status(400).json({ success: false, error: { code: 'INVALID_INPUT', message: 'Name is required.' } });
@@ -42,16 +42,27 @@ export const authController = {
         return res.status(400).json({ success: false, error: { code: 'INVALID_INPUT', message: 'Password must be at least 6 characters long.' } });
       }
 
-      const existing = await userRepository.findByEmail(email);
+      const cleanEmail = email.toLowerCase().trim();
+      const existing = await userRepository.findByEmail(cleanEmail);
       if (existing) {
-        return res.status(409).json({ success: false, error: { code: 'EMAIL_EXISTS', message: 'An account with this email already exists.' } });
+        const existingRoleLabel = existing.role === 'admin' ? 'Administrator' : 'standard User';
+        return res.status(409).json({
+          success: false,
+          error: {
+            code: 'EMAIL_EXISTS',
+            message: `An account with this email already exists as a ${existingRoleLabel}. You cannot register the same email address for both User and Admin accounts.`
+          }
+        });
       }
+
+      const assignedRole = (role === 'admin' || role === 'administrator') ? 'admin' : 'user';
 
       const user = await userRepository.create({
         name: name.trim(),
-        email: email.trim(),
+        email: cleanEmail,
         password,
-        organization: organization || 'General'
+        role: assignedRole,
+        organization: organization || (assignedRole === 'admin' ? 'Security & System Admin' : 'General')
       });
 
       const safeUser = userRepository.toSafeUser(user);
@@ -77,7 +88,7 @@ export const authController = {
 
   async login(req, res) {
     try {
-      const { email, password } = req.body;
+      const { email, password, portal, role, loginType } = req.body;
 
       if (!email || !password) {
         return res.status(400).json({
@@ -95,6 +106,34 @@ export const authController = {
           error: {
             code: 'USER_NOT_FOUND',
             message: 'No account found with this email ID. Please create an account to generate your User ID and password.'
+          }
+        });
+      }
+
+      // Authorize portal role alignment (Admin portal vs User portal)
+      const expectedRole = (portal || role || loginType || '').toLowerCase().trim();
+      if (expectedRole === 'admin' && user.role !== 'admin') {
+        return res.status(403).json({
+          success: false,
+          roleMismatch: true,
+          expectedRole: 'admin',
+          actualRole: 'user',
+          error: {
+            code: 'ROLE_MISMATCH',
+            message: 'Access Denied: This email is registered as a standard User. You cannot log into the Admin portal with a User account. Please switch to the User Login portal.'
+          }
+        });
+      }
+
+      if (expectedRole === 'user' && user.role === 'admin') {
+        return res.status(403).json({
+          success: false,
+          roleMismatch: true,
+          expectedRole: 'user',
+          actualRole: 'admin',
+          error: {
+            code: 'ROLE_MISMATCH',
+            message: 'Access Denied: This email is registered as an Administrator. You cannot log into the User portal with an Admin account. Please switch to the Admin Login portal.'
           }
         });
       }
